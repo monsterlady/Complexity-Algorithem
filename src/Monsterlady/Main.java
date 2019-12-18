@@ -10,13 +10,13 @@ import java.util.Arrays;
 
 public class Main {
     private final static int runTimes = 10;
-    private final static int[] SIZE = {5000, 10000, 50000, 100000, 500000, 1000000};//, 5000000, 10000000, 50000000, 100000000};
+    private final static int[] SIZE = /*{5000, 10000, 50000, 100000, 500000,*/{ 1000000, 5000000, 10000000, 50000000, 100000000};
 
     public static void main(String[] args) {
 	    // write your code here
         long start,end;
         for(int i = 0; i < SIZE.length; i++) {
-            start = System.currentTimeMillis();
+            start = System.nanoTime();
             for(int t = 0; t < runTimes;t++ ){
                 //initiate array
                 int[] listToSort = new Main().generateRandomList(SIZE[i]);
@@ -25,10 +25,11 @@ public class Main {
                 // 2. seqMinMax:
                 // seqMinMax(listToSort);
                 // 3. recMinMax:
-                // recMinMax(listToSort);
+                 System.out.println("Running Algorithm 3 : recMinMax");
+                 recMinMax(listToSort);
             }
-            end = System.currentTimeMillis();
-            System.out.println("N: "+ SIZE[i] + " ; Average running Time for per time:" + (end - start) / 10 + "(ms)");
+            end = System.nanoTime();
+            System.out.println("N: "+ SIZE[i] + " ; Average running Time for per time:" + ((end - start)/1000000) / 10 + "(ms)");
         }
         /*
         start = System.currentTimeMillis();
@@ -39,6 +40,8 @@ public class Main {
     }
 
     private static void sortedMinMax(@NotNull int[] arrayList){
+        System.out.println("Running Algorithm 1 : sortedMinMax");
+
         for( int i=0; i < arrayList.length-1; i++ ) {
             for( int j=i+1; j>0; j-- ) {
                 if( arrayList[j-1] <= arrayList[j] )
@@ -66,6 +69,7 @@ public class Main {
                 //System.out.println("Sorting:  " + Arrays.toString(arrayList));
             }
         }*/
+        System.out.println("Running Algorithm 2 : seqMinMax");
         int minNum = arrayList[0];
         int maxNum = arrayList[arrayList.length - 1];
         for(int i : arrayList){
