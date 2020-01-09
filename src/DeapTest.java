@@ -24,26 +24,42 @@ public class DeapTest {
         System.out.println("Initial Deap------------------------");
         deap.print();
         System.out.println("Current size is : " +deap.size());
-
+        //removeLow for 3 times
         for (int a = 0; a < 3; a++) {
             System.out.println("Delete Min--------------------------");
             deap.removeLow();
             deap.print();
             System.out.println("Current size is : " +deap.size());
         }
-
+        //removeHigh for 3 times
         for (int b = 0; b < 3; b++) {
             System.out.println("Delete Max--------------------------");
             deap.removeHigh();
             deap.print();
             System.out.println("Current size is : " + deap.size());
         }
-
+        //add an element
             System.out.println("Insert Element--------------------------");
             deap.add(9);
             deap.print();
             System.out.println("Current size is : " + deap.size());
-
+         //get the Largest element
+            System.out.println("Retrieve the largest Element------------");
+            System.out.println("The largest element now is : "+ deap.getHigh());
+            deap.print();
+            System.out.println("Current size is : " + deap.size());
+         //get the smallest element
+            System.out.println("Retrieve the smallest Element------------");
+            System.out.println("The smallest element now is : "+deap.getLow());
+            deap.print();
+            System.out.println("Current size is : " + deap.size());
+            //Test if the deap is empty
+            for(int i = deap.size(); i > 0;i--){
+                deap.removeLow();
+                System.out.println("Current size is : " + deap.size());
+            }
+            deap.print();
+            System.out.println(deap.isEmpty());
 
         } catch (NoMinHeapException | NoMaxHeapException n ) {
             n.printStackTrace();
