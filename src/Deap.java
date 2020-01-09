@@ -2,6 +2,9 @@
  * 此文件由徐瑞康所创建
  */
 
+import Exceptions.NoMaxHeapException;
+import Exceptions.NoMinHeapException;
+
 /**
  * The type Deap.
  */
@@ -68,18 +71,22 @@ public class Deap {
         return minCorrespondingNode;
     }
 
-    // Insert key at specified index in min-Heap
-    private void minInsert(int at, int key) {
-        for (int parent; (parent = (at - 1) / 2) != 0 && key < deap[parent]; deap[at] = deap[parent], at = parent)
-            ;
-        deap[at] = key;
+    // Insert valueToInsert position specified index in min-Heap
+    private void minInsert(int position, int valueToInsert) {
+        for (int parent;
+             //push up as long as the parent node is not null and the value smaller than it of parent
+             (parent = (position - 1) / 2) != 0 && valueToInsert < deap[parent];
+             deap[position] = deap[parent], position = parent) ;
+        deap[position] = valueToInsert;
     }
 
-    // Insert key at specified index in max-Heap
-    private void maxInsert(int at, int key) {
-        for (int parent; (parent = (at - 1) / 2) != 0 && key > deap[parent]; deap[at] = deap[parent], at = parent)
-            ;
-        deap[at] = key;
+    // Insert valueToInsert position specified index in max-Heap
+    private void maxInsert(int position, int valueToInsert) {
+        for (int parent;
+            //push up as long as the parent node is not null and the value larger than it of parent
+             (parent = (position - 1) / 2) != 0 && valueToInsert > deap[parent];
+             deap[position] = deap[parent], position = parent) ;
+        deap[position] = valueToInsert;
     }
 
     /**
@@ -88,7 +95,10 @@ public class Deap {
      * @return the int
      */
 // remove and return the largest element from present deap
-    public int removeHigh() {
+    public int removeHigh() throws NoMaxHeapException {
+        if(size() < 2){
+            throw new NoMaxHeapException("MaxHeap not exists!");
+        }
         int indexOflargestElement = 2;
         int tmp_deap = deap[numOfDeap--];
 
@@ -124,25 +134,27 @@ public class Deap {
      * @return the int
      */
 //remove and return the smallest element from present deap
-    public int removeLow() {
-        int a = 1;
+    public int removeLow() throws NoMinHeapException {
+        if(size() == 0){
+            throw new NoMinHeapException("MinHeap not exists!");
+        }
+        int indexOfSmallestElement = 1;
         int tmp_deap = deap[numOfDeap--];
-
-        while (a * 2 + 1 < numOfDeap) {
-            if (deap[a * 2 + 1] < deap[a * 2 + 2]) {
-                deap[a] = deap[a * 2 + 1];
-                a = a * 2 + 1;
+        while (indexOfSmallestElement * 2 + 1 < numOfDeap) {
+            if (deap[indexOfSmallestElement * 2 + 1] < deap[indexOfSmallestElement * 2 + 2]) {
+                deap[indexOfSmallestElement] = deap[indexOfSmallestElement * 2 + 1];
+                indexOfSmallestElement = indexOfSmallestElement * 2 + 1;
             } else {
-                deap[a] = deap[a * 2 + 2];
-                a = a * 2 + 2;
+                deap[indexOfSmallestElement] = deap[indexOfSmallestElement * 2 + 2];
+                indexOfSmallestElement = indexOfSmallestElement * 2 + 2;
             }
         }
-        int max = correspondingNodeInMax(a);
+        int max = correspondingNodeInMax(indexOfSmallestElement);
         if (tmp_deap > deap[max]) {
-            deap[a] = deap[max];
+            deap[indexOfSmallestElement] = deap[max];
             maxInsert(max, tmp_deap);
         } else {
-            deap[a] = tmp_deap;
+            deap[indexOfSmallestElement] = tmp_deap;
         }
         return tmp_deap;
 
@@ -151,21 +163,28 @@ public class Deap {
     /**
      * Insert.
      *
-     * @param x the x
+     * @param x the element to insert to Deap
      */
 // Insert new element to present deap
     public void add(int x) {
+        //can not add if the deap is already full
         if (numOfDeap == deap.length - 1) {
             System.out.println("The heap is full");
+            //kill
             System.exit(1);
         }
+        //size++
         numOfDeap++;
+        //if the deap is empty, X will be the smallest element
         if (numOfDeap == 1) {
             deap[1] = x;
             return;
         }
+        //determine the last elements position
         if (inMaxHeap(numOfDeap)) {
+            //get the corresponding Node In Minheap if the last one in MaxHeap, because the new element can only add to the last element.
             int i = correspondingNodeInMin(numOfDeap);
+            //swap if x smaller than the corresponding node in minHeap, otherwise insert it to maxHeap
             if (x < deap[i]) {
                 deap[numOfDeap] = deap[i];
                 minInsert(i, x);
