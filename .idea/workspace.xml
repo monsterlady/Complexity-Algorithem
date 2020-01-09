@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="3" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="8904be0d-5ce8-4e19-a745-88a3b5c6290a" name="Default Changelist" comment="">
+    <list default="true" id="8904be0d-5ce8-4e19-a745-88a3b5c6290a" name="Default Changelist" comment="-from PC 8 /1/20">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Complexity&amp;Algorithm2.2/DeapTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Complexity&amp;Algorithm2.2/DeapTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Deap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Deap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DeapTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DeapTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +47,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunManager">
     <configuration name="DeapTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -80,36 +86,70 @@
       <option name="presentableId" value="Default" />
       <updated>1578437593969</updated>
       <workItem from="1578437595363" duration="1717000" />
+      <workItem from="1578524503623" duration="2960000" />
+      <workItem from="1578528955760" duration="1973000" />
     </task>
+    <task id="LOCAL-00001" summary="-from PC 7 /1/20">
+      <created>1578440765247</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1578440765247</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="-from PC 7 /1/20" />
+    <option name="LAST_COMMIT_MESSAGE" value="-from PC 7 /1/20" />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="740" y="261" key="FileChooserDialogImpl" timestamp="1578440716555">
+    <state x="703" y="252" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1578528717428">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="261" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1578440716555" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1578440682136">
+    <state x="703" y="252" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040@0.0.1920.1040" timestamp="1578528717428" />
+    <state x="528" y="113" key="CommitChangelistDialog2" timestamp="1578530876131">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1578440682136" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1578440682136">
+    <state x="528" y="113" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1578530876131" />
+    <state x="740" y="261" key="FileChooserDialogImpl" timestamp="1578528688116">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1578440682136" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1578440682136">
+    <state x="740" y="261" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1578528688116" />
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1578530937459">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1578440682136" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1578440682136">
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1578530937459" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1578530937459">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1578440682136" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1578437734477">
+    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1578530937459" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1578530937459">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1578437734477" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1578530937459" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1578530937459">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1578530937459" />
+    <state x="461" y="162" key="SettingsEditor" timestamp="1578528943207">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="461" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1578528943207" />
+    <state x="689" y="249" key="Vcs.Push.Dialog.v2" timestamp="1578440874405">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="689" y="249" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1578440874405" />
+    <state x="640" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1578528955553">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="640" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1578528955553" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1578528698900">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1578528698900" />
   </component>
 </project>

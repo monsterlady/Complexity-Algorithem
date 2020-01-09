@@ -7,7 +7,7 @@ public class DeapTest {
      *
      * @param argv the input arguments
      */
-// 메인 함수 작성
+// Test
     public static void main(String[] argv) {
         System.out.println("start");
         Deap deap = new Deap(1024);
@@ -18,7 +18,7 @@ public class DeapTest {
         System.out.println("Initial Deap------------------------");
         deap.print();
         System.out.println(deap.size());
-
+/*
         for (int a = 0; a < 3; a++) {
             System.out.println("Delete Min--------------------------");
             deap.removeLow();
@@ -32,8 +32,9 @@ public class DeapTest {
             deap.print();
             System.out.println(deap.size());
         }
-
+*/
         System.out.println(deap.getLow() + "  " + deap.getHigh());
 
+        System.out.println(deap.inMaxHeap(10));
     }
 }

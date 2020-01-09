@@ -25,47 +25,57 @@ public class Deap {
         deap = new int[maxSize];
     }
 
-    // 인덱스 i가 max-heap에 위치해 있으면 true를 리턴하고, 그렇지 않으면 false를 리턴한다
-    private boolean inMaxHeap(int i) {
-        while (i > 2) { // 루트 탐색
+    // return true if the element in man-Heap, otherwise return false;
+    protected boolean inMaxHeap(int i) {
+        if( i >= 3 * Math.pow(2, Math.floor(Math.log(i + 1) / Math.log(2)) - 1 ) - 1){
+            return true;
+        } else {
+            return false;
+        }
+        /*
+        while (i > 2) { // get the parent node of this element
             i = (i - 1) / 2;
         }
-        // 최대히프일때 루트 i = 2, 최소히프일때 루트 i = 1
+        // determine the position in which heap
         if (i == 2) {
             return true;
         } else {
             return false;
         }
+        */
     }
 
-    // 인덱스 pos가 min-heap에 위치해 있을때 max partner의 인덱스를 리턴한다
-    private int maxPartner(int pos) {
-        Double ofs = Math.floor(Math.log(pos + 1) / Math.log(2)) - 1;
-        int pos_minh = (int) (pos + Math.pow(2, ofs));
-        if (pos_minh > numOfDeap) { // pos_minh가 원소의 개수보다 클 경우
-            pos_minh = (pos_minh - 1) / 2; // (j-1)/2
+    // return the index of Corresponding node, if the element is in min-Heap
+    private int correspondingNodeInMax(int i) {
+        //j = i + 2[log2i - 1]
+        //i + 1 cause of the root element is empty
+        Double ofs = Math.floor(Math.log(i + 1) / Math.log(2)) - 1;
+        int maxCorrespondingNode = (int) (i + Math.pow(2, ofs));
+        //if j > the number of current element, then let j be the parent node of itself
+        if (maxCorrespondingNode > numOfDeap) {
+            maxCorrespondingNode = (maxCorrespondingNode - 1) / 2; // (j-1)/2
         }
-        return pos_minh;
+        return maxCorrespondingNode;
     }
 
-    // 인덱스 pos가 max-heap에 위치해 있을때 min partner의 인덱스를 리턴한다
-    private int minPartner(int pos) {
-        int index_minp;
-
-        Double ofs = Math.floor(Math.log(pos + 1) / Math.log(2)) - 1;
-        index_minp = (int) (pos - Math.pow(2, ofs));
-
-        return index_minp;
+    // return the index of Corresponding node, if the element is in max-Heap
+    private int correspondingNodeInMin(int j) {
+        int minCorrespondingNode;
+        //i = j - 2[log2j - 1]
+        //j + 1 cause of the root element is empty
+        Double ofs = Math.floor(Math.log(j + 1) / Math.log(2)) - 1;
+        minCorrespondingNode = (int) (j - Math.pow(2, ofs));
+        return minCorrespondingNode;
     }
 
-    // min-heap에 있는 인덱스 at 위치에 key를 삽입
+    // Insert key at specified index in min-Heap
     private void minInsert(int at, int key) {
         for (int parent; (parent = (at - 1) / 2) != 0 && key < deap[parent]; deap[at] = deap[parent], at = parent)
             ;
         deap[at] = key;
     }
 
-    // max-heap에 있는 인덱스 at 위치에 key를 삽입
+    // Insert key at specified index in max-Heap
     private void maxInsert(int at, int key) {
         for (int parent; (parent = (at - 1) / 2) != 0 && key > deap[parent]; deap[at] = deap[parent], at = parent)
             ;
@@ -77,21 +87,21 @@ public class Deap {
      *
      * @return the int
      */
-// max 값을 삭제하여 리턴한다
+// remove and return the largest element from present deap
     public int removeHigh() {
-        int a = 2;
+        int indexOflargestElement = 2;
         int tmp_deap = deap[numOfDeap--];
 
-        while (a * 2 + 1 < numOfDeap) {
-            if (deap[a * 2 + 1] > deap[a * 2 + 2]) {
-                deap[a] = deap[a * 2 + 1];
-                a = a * 2 + 1;
+        while (indexOflargestElement * 2 + 1 < numOfDeap) {
+            if (deap[indexOflargestElement * 2 + 1] > deap[indexOflargestElement * 2 + 2]) {
+                deap[indexOflargestElement] = deap[indexOflargestElement * 2 + 1];
+                indexOflargestElement = indexOflargestElement * 2 + 1;
             } else {
-                deap[a] = deap[a * 2 + 2];
-                a = a * 2 + 2;
+                deap[indexOflargestElement] = deap[indexOflargestElement * 2 + 2];
+                indexOflargestElement = indexOflargestElement * 2 + 2;
             }
         }
-        int min = minPartner(a);
+        int min = correspondingNodeInMin(indexOflargestElement);
         if (min * 2 - 1 < numOfDeap) {
             if (deap[min * 2 + 1] > deap[min * 2 + 2]) {
                 min = min * 2 + 1;
@@ -100,10 +110,10 @@ public class Deap {
             }
         }
         if (tmp_deap < deap[min]) {
-            deap[a] = deap[min];
+            deap[indexOflargestElement] = deap[min];
             minInsert(min, tmp_deap);
         } else {
-            deap[a] = tmp_deap;
+            deap[indexOflargestElement] = tmp_deap;
         }
         return tmp_deap;
     }
@@ -113,7 +123,7 @@ public class Deap {
      *
      * @return the int
      */
-// min 값을 삭제하여 리턴한다
+//remove and return the smallest element from present deap
     public int removeLow() {
         int a = 1;
         int tmp_deap = deap[numOfDeap--];
@@ -127,7 +137,7 @@ public class Deap {
                 a = a * 2 + 2;
             }
         }
-        int max = maxPartner(a);
+        int max = correspondingNodeInMax(a);
         if (tmp_deap > deap[max]) {
             deap[a] = deap[max];
             maxInsert(max, tmp_deap);
@@ -143,7 +153,7 @@ public class Deap {
      *
      * @param x the x
      */
-// x를 삽입한다, 구현할 필요 없음.
+// Insert new element to present deap
     public void add(int x) {
         if (numOfDeap == deap.length - 1) {
             System.out.println("The heap is full");
@@ -155,7 +165,7 @@ public class Deap {
             return;
         }
         if (inMaxHeap(numOfDeap)) {
-            int i = minPartner(numOfDeap);
+            int i = correspondingNodeInMin(numOfDeap);
             if (x < deap[i]) {
                 deap[numOfDeap] = deap[i];
                 minInsert(i, x);
@@ -163,7 +173,7 @@ public class Deap {
                 maxInsert(numOfDeap, x);
             }
         } else {
-            int i = maxPartner(numOfDeap);
+            int i = correspondingNodeInMax(numOfDeap);
             if (x > deap[i]) {
                 deap[numOfDeap] = deap[i];
                 maxInsert(i, x);
@@ -176,7 +186,7 @@ public class Deap {
     /**
      * Print.
      */
-// Deap를 트리 형식으로 프린트한다, 구현할 필요 없음.
+// Print the deap in tree form
     public void print() {
         int levelNum = 2;
         int thisLevel = 0;
@@ -217,10 +227,20 @@ public class Deap {
         return numOfDeap;
     }
 
+    /**
+     * Is empty boolean.
+     *
+     * @return the boolean
+     */
     public boolean isEmpty(){
         return size()==0;
     }
 
+    /**
+     * Get low int.
+     *
+     * @return the int
+     */
     public int getLow(){
         if(isEmpty()){
             return -1;
@@ -229,6 +249,11 @@ public class Deap {
 
     }
 
+    /**
+     * Get high int.
+     *
+     * @return the int
+     */
     public int getHigh(){
         if(isEmpty() || numOfDeap < 2){
             return -1;
