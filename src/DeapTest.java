@@ -14,30 +14,34 @@ public class DeapTest {
     public static void main(String[] argv) {
         System.out.println("start");
         Deap deap = new Deap(1024);
-        int[] data = {30, 9 , 8, 19, 15, 10, 5, 25, 20, 4, 40, 45};
+        int[] data = {10,9,8,7,6,5,4,3,2,1};
         //add data to deap
         for (int i = 0; i < data.length; i++) {
             deap.add(data[i]);
         }
         //Test code
-        try {
+
         System.out.println("Initial Deap------------------------");
         deap.print();
         System.out.println("Current size is : " +deap.size());
+        try {
+
+            //removeHigh for 3 times
+            for (int i = 0; i < 3; i++) {
+                System.out.println("Delete Max--------------------------");
+                deap.removeHigh();
+                deap.print();
+                System.out.println("Current size is : " + deap.size());
+            }
+
         //removeLow for 3 times
-        for (int a = 0; a < 3; a++) {
+        for (int i = 0; i < 3; i++) {
             System.out.println("Delete Min--------------------------");
             deap.removeLow();
             deap.print();
             System.out.println("Current size is : " +deap.size());
         }
-        //removeHigh for 3 times
-        for (int b = 0; b < 3; b++) {
-            System.out.println("Delete Max--------------------------");
-            deap.removeHigh();
-            deap.print();
-            System.out.println("Current size is : " + deap.size());
-        }
+
         //add an element
             System.out.println("Insert Element--------------------------");
             deap.add(9);
@@ -61,7 +65,8 @@ public class DeapTest {
             deap.print();
             System.out.println(deap.isEmpty());
 
-        } catch (NoMinHeapException | NoMaxHeapException n ) {
+
+            } catch (NoMinHeapException | NoMaxHeapException n ) {
             n.printStackTrace();
         }
 

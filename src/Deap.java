@@ -74,7 +74,7 @@ public class Deap {
     // Insert valueToInsert position specified index in min-Heap
     private void minInsert(int position, int valueToInsert) {
         for (int parent;
-             //push up as long as the parent node is not null and the value smaller than it of parent
+             //shift up as long as the parent node is not null and the value smaller than its parent
              (parent = (position - 1) / 2) != 0 && valueToInsert < deap[parent];
              deap[position] = deap[parent], position = parent) ;
         deap[position] = valueToInsert;
@@ -83,7 +83,7 @@ public class Deap {
     // Insert valueToInsert position specified index in max-Heap
     private void maxInsert(int position, int valueToInsert) {
         for (int parent;
-            //push up as long as the parent node is not null and the value larger than it of parent
+            //shift up as long as the parent node is not null and the value larger than its parent
              (parent = (position - 1) / 2) != 0 && valueToInsert > deap[parent];
              deap[position] = deap[parent], position = parent) ;
         deap[position] = valueToInsert;
@@ -161,12 +161,21 @@ public class Deap {
     }
 
     /**
+     * Size int.
+     *
+     * @return the int
+     */
+    public int size(){
+        return numOfDeap;
+    }
+
+    /**
      * Insert.
      *
      * @param x the element to insert to Deap
      */
 // Insert new element to present deap
-    public void add(int x) {
+    public void add(int x){
         //can not add if the deap is already full
         if (numOfDeap == deap.length - 1) {
             System.out.println("The heap is full");
@@ -207,14 +216,14 @@ public class Deap {
      */
 // Print the deap in tree form
     public void print() {
-        int levelNum = 2;
-        int thisLevel = 0;
+        int numOfheight = 2;
+        int thisheight = 0;
         int gap = 8;
         for (int i = 1; i <= numOfDeap; i++) {
             for (int j = 0; j < gap - 1; j++) {
                 System.out.print(" ");
             }
-            if (thisLevel != 0) {
+            if (thisheight != 0) {
                 for (int j = 0; j < gap - 1; j++) {
                     System.out.print(" ");
                 }
@@ -223,28 +232,20 @@ public class Deap {
                 System.out.print(" ");
             }
             System.out.print(deap[i]);
-            thisLevel++;
-            if (thisLevel == levelNum) {
+            thisheight++;
+            if (thisheight == numOfheight) {
                 System.out.println();
-                thisLevel = 0;
-                levelNum *= 2;
+                thisheight = 0;
+                numOfheight *= 2;
                 gap /= 2;
             }
         }
         System.out.println();
-        if (thisLevel != 0) {
+        if (thisheight != 0) {
             System.out.println();
         }
     }
 
-    /**
-     * Size int.
-     *
-     * @return the int
-     */
-    public int size(){
-        return numOfDeap;
-    }
 
     /**
      * Is empty boolean.
@@ -260,9 +261,9 @@ public class Deap {
      *
      * @return the int
      */
-    public int getLow(){
+    public int getLow() throws NoMinHeapException {
         if(isEmpty()){
-            return -1;
+           throw new NoMinHeapException("The deap now is emplty!");
         }
             return deap[1];
 
@@ -273,9 +274,9 @@ public class Deap {
      *
      * @return the int
      */
-    public int getHigh(){
+    public int getHigh() throws NoMaxHeapException {
         if(isEmpty() || numOfDeap < 2){
-            return -1;
+            throw new NoMaxHeapException("The maxHeap now is emplty!");
         }
         return deap[2];
     }
