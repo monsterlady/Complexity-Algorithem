@@ -8,6 +8,7 @@
 
 package Monsterlady;
 
+import Monsterlady.Galaxy.Galaxy;
 import Monsterlady.Module.Planet;
 
 import java.util.*;
@@ -17,7 +18,7 @@ import java.util.regex.Pattern;
  * The type Application.
  */
 public class Application {
-    private Map map;
+    private Galaxy galaxy;
     /**
      * The From.
      */
@@ -31,7 +32,7 @@ public class Application {
      * Instantiates a new Application.
      */
     public Application() {
-        this.map = new Map();
+        this.galaxy = new Galaxy();
     }
 
     /**
@@ -55,7 +56,7 @@ public class Application {
         String sa[] = name.split("");
         String systemName = sa[0];
         int serialNum = Integer.parseInt(sa[1]);
-       for(Planet planet : map.getPlanets()){
+       for(Planet planet : galaxy.getPlanets()){
            if(planet.getSerialNum() == serialNum && planet.getSystemNum().equals(systemName.toUpperCase())){
                return planet;
            }
@@ -103,22 +104,41 @@ public class Application {
     }
 
     /**
-     * Find path.
+     * Find the solution.
      */
     public void findPath(){
        menu();
         List<Planet> solution  = dfs(from,visited);
         if(!solution.isEmpty()){
             System.out.println("The path is found from " + from.getSystemNum() + from.getSerialNum() + " to " + to.getSystemNum() + to.getSerialNum());
+            String str = "";
             for(Planet planet :solution){
                 if(planet.equals(to)){
-                    System.out.print(planet.getSystemNum() + planet.getSerialNum());
+                    //System.out.print(planet.getSystemNum() + planet.getSerialNum());
+                    str += planet.getSystemNum() + planet.getSerialNum();
                 } else {
-                    System.out.print(planet.getSystemNum() + planet.getSerialNum() + " to ");
+                    //System.out.print(planet.getSystemNum() + planet.getSerialNum() + " to ");
+                    str += planet.getSystemNum() + planet.getSerialNum() + " to ";
                 }
             }
+            shotdown(str);
         } else {
-            System.out.println("No path found from " + from.toString() + " to " + to.toString());
+            String s = "No path found from " + from.toString() + " to " + to.toString();
+           shotdown(s);
+        }
+    }
+
+    private void shotdown(String s){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println(s + "\n (Enter any key to continue or Shut down the System with 8527)");
+        String input = scanner.nextLine();
+        if(input.equals("8527")){
+            System.out.println("System Shut down!");
+            System.exit(-1);
+        } else if(input.length() == 0){
+            findPath();
+        } else {
+            findPath();
         }
     }
 
@@ -138,7 +158,7 @@ public class Application {
      *
      * @param start   the start
      * @param visited the visited
-     * @return the linked list
+     * @return the path
      */
     LinkedList<Planet> dfs(Planet start, Set<Planet> visited) {
         LinkedList<Planet> solution;
@@ -159,7 +179,6 @@ public class Application {
                 }
             }
         }
-        /* visited.remove(start); */
         return new LinkedList<Planet>(); /* No solution */
     }
 

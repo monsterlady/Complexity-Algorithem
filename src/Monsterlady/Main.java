@@ -8,6 +8,8 @@
 
 package Monsterlady;
 
+import Monsterlady.Module.Planet;
+
 /**
  * The type Main.
  */
@@ -22,5 +24,12 @@ public class Main {
 	// write your code here
         Application application = new Application();
         application.findPath();
+        /*String s = "";
+        for(Planet p :  application.getPlanetBySS("c1").getAvailablePlanets()){
+           s += p.toString();
+        }
+
+        System.out.println(s);*/
+
     }
 }

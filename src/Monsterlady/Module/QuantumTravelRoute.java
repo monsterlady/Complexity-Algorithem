@@ -12,8 +12,8 @@ package Monsterlady.Module;
  * The type Quantum travel.
  */
 public class QuantumTravelRoute {
-    private String fromSystem;
-    private String toSystem;
+    private StarSystem fromSystem;
+    private StarSystem toSystem;
 
     /**
      * Instantiates a new Quantum travel.
@@ -21,7 +21,7 @@ public class QuantumTravelRoute {
      * @param fromSystem the from system
      * @param toSystem   the to system
      */
-    public QuantumTravelRoute(String fromSystem, String toSystem) {
+    public QuantumTravelRoute(StarSystem fromSystem, StarSystem toSystem) {
         this.fromSystem = fromSystem;
         this.toSystem = toSystem;
     }
@@ -31,7 +31,7 @@ public class QuantumTravelRoute {
      *
      * @return the from system
      */
-    public String getFromSystem() {
+    public StarSystem getFromSystem() {
         return fromSystem;
     }
 
@@ -40,7 +40,7 @@ public class QuantumTravelRoute {
      *
      * @return the to system
      */
-    public String getToSystem() {
+    public StarSystem getToSystem() {
         return toSystem;
     }
 }
