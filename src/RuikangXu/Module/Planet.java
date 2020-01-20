@@ -6,7 +6,7 @@
  *  ******************************************************
  */
 
-package Monsterlady.Module;
+package RuikangXu.Module;
 
 import java.util.ArrayList;
 
@@ -16,19 +16,20 @@ import java.util.ArrayList;
 public class Planet {
     private String color;
     private int serialNum;
-    private String systemNum;
+    private String systemName;
     private ArrayList<Planet> availablePlanets;
+
     /**
      * Instantiates a new Planet.
      *
-     * @param color     the color
-     * @param serialNum the serial num
-     * @param systemNum the system num
+     * @param systemName the system num
+     * @param serialNum  the serial num
+     * @param color      the color
      */
-    public Planet(String systemNum,int serialNum,String color ) {
+    public Planet(String systemName, int serialNum, String color ) {
         this.color = color;
         this.serialNum = serialNum;
-        this.systemNum = systemNum;
+        this.systemName = systemName;
         this.availablePlanets = new ArrayList<>();
     }
 
@@ -55,10 +56,15 @@ public class Planet {
      *
      * @return the system num
      */
-    public String getSystemNum() {
-        return systemNum;
+    public String getSystemName() {
+        return systemName;
     }
 
+    /**
+     * Gets available planets.
+     *
+     * @return the available planets
+     */
     public ArrayList<Planet> getAvailablePlanets() {
         return availablePlanets;
     }
@@ -67,7 +73,7 @@ public class Planet {
     public String toString() {
         return "Planet : " +
                 this.getColor() +
-                " " + this.getSystemNum() +
+                " " + this.getSystemName() +
                 this.getSerialNum();
     }
 }

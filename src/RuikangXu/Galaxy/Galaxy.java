@@ -6,15 +6,13 @@
  *  ******************************************************
  */
 
-package Monsterlady.Galaxy;
+package RuikangXu.Galaxy;
 
-import Monsterlady.Module.Planet;
-import Monsterlady.Module.QuantumTravelRoute;
-import Monsterlady.Module.StarRoute;
-import Monsterlady.Module.StarSystem;
+import RuikangXu.Module.Planet;
+import RuikangXu.Module.QuantumTravelRoute;
+import RuikangXu.Module.StarRoute;
+import RuikangXu.Module.StarSystem;
 
-import javax.xml.stream.events.StartElement;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 
 /**
@@ -145,7 +143,7 @@ public class Galaxy {
                     for(Planet thisSystemPlanet : eachSystem.getPlanets()){
                         if((thisSystemPlanet.getSerialNum() == correspondingStar.getSerialNum())
                                 && (thisSystemPlanet.getColor().equals(correspondingStar.getColor()))
-                                && (!thisSystemPlanet.getSystemNum().equals(correspondingStar.getSystemNum()))){
+                                && (!thisSystemPlanet.getSystemName().equals(correspondingStar.getSystemName()))){
                             thisSystemPlanet.getAvailablePlanets().add(correspondingStar);
                         }
                     }

@@ -6,7 +6,7 @@
  *  ******************************************************
  */
 
-package Monsterlady.Module;
+package RuikangXu.Module;
 
 /**
  * The type Quantum travel.

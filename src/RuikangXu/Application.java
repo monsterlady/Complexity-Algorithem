@@ -6,10 +6,10 @@
  *  ******************************************************
  */
 
-package Monsterlady;
+package RuikangXu;
 
-import Monsterlady.Galaxy.Galaxy;
-import Monsterlady.Module.Planet;
+import RuikangXu.Galaxy.Galaxy;
+import RuikangXu.Module.Planet;
 
 import java.util.*;
 import java.util.regex.Pattern;
@@ -20,12 +20,12 @@ import java.util.regex.Pattern;
 public class Application {
     private Galaxy galaxy;
     /**
-     * The From.
+     * The star Planet from.
+     *
+     * The destination To.
      */
-    public Planet from, /**
-     * The To.
-     */
-    to;
+    public Planet from,to;
+
     private Set<Planet> visited = new HashSet<>();
 
     /**
@@ -47,7 +47,7 @@ public class Application {
     }
 
     /**
-     * Get planet by ss planet.
+     * Get planet by the Name + Num.
      *
      * @param name the name
      * @return the planet
@@ -57,7 +57,7 @@ public class Application {
         String systemName = sa[0];
         int serialNum = Integer.parseInt(sa[1]);
        for(Planet planet : galaxy.getPlanets()){
-           if(planet.getSerialNum() == serialNum && planet.getSystemNum().equals(systemName.toUpperCase())){
+           if(planet.getSerialNum() == serialNum && planet.getSystemName().equals(systemName.toUpperCase())){
                return planet;
            }
         }
@@ -110,21 +110,21 @@ public class Application {
        menu();
         List<Planet> solution  = dfs(from,visited);
         if(!solution.isEmpty()){
-            System.out.println("The path is found from " + from.getSystemNum() + from.getSerialNum() + " to " + to.getSystemNum() + to.getSerialNum());
+            System.out.println("The path is found from " + from.getSystemName() + from.getSerialNum() + " to " + to.getSystemName() + to.getSerialNum());
             String str = "";
             for(Planet planet :solution){
                 if(planet.equals(to)){
                     //System.out.print(planet.getSystemNum() + planet.getSerialNum());
-                    str += planet.getSystemNum() + planet.getSerialNum();
+                    str += planet.getSystemName() + planet.getSerialNum();
                 } else {
                     //System.out.print(planet.getSystemNum() + planet.getSerialNum() + " to ");
-                    str += planet.getSystemNum() + planet.getSerialNum() + " to ";
+                    str += planet.getSystemName() + planet.getSerialNum() + " to ";
                 }
             }
-            shotdown(str);
+            System.out.println(str);
         } else {
-            String s = "No path found from " + from.toString() + " to " + to.toString();
-           shotdown(s);
+            String str = "No path found from " + from.toString() + " to " + to.toString();
+            System.out.println(str);
         }
     }
 
@@ -145,11 +145,11 @@ public class Application {
     private void menu(){
         System.out.println("Please enter the starting point！(eg: A1)");
         String fromPlanet = getVaildInput();
-        from = getPlanetBySS(fromPlanet);
+        this.from = getPlanetBySS(fromPlanet);
         System.out.println(from.toString());
         System.out.println("Please enter the destination！(eg: C7)");
         String toPlanet = getVaildInput();
-        to = getPlanetBySS(toPlanet);
+        this.to = getPlanetBySS(toPlanet);
         System.out.println(to.toString());
     }
 
@@ -160,7 +160,7 @@ public class Application {
      * @param visited the visited
      * @return the path
      */
-    LinkedList<Planet> dfs(Planet start, Set<Planet> visited) {
+    public LinkedList<Planet> dfs(Planet start, Set<Planet> visited) {
         LinkedList<Planet> solution;
         visited.add(start);
         if (isGoalState(start)) { /* Found */

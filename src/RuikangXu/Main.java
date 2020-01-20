@@ -5,11 +5,7 @@
  *  * permission of Ruikang Xu
  *  ******************************************************
  */
-
-package Monsterlady;
-
-import Monsterlady.Module.Planet;
-
+package RuikangXu;
 /**
  * The type Main.
  */
@@ -21,15 +17,9 @@ public class Main {
      * @param args the input arguments
      */
     public static void main(String[] args) {
-	// write your code here
+	//initializing application
         Application application = new Application();
+        //call findPath function.
         application.findPath();
-        /*String s = "";
-        for(Planet p :  application.getPlanetBySS("c1").getAvailablePlanets()){
-           s += p.toString();
-        }
-
-        System.out.println(s);*/
-
     }
 }
